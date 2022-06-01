@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>구매 확정 목록</title>
+{% endblock title %}
+{% block content %}
+<h1>구매 확정 목록</h1>
+<h3>멋사몰에서 결제가 완료된 목록입니다</h3>
+<br>
+<div class="histories">
+    {% for history in histories %}
+    <div>
+        <h2>{{history.shopped_date}}</h2>
+        <h3>구매 물품: {{history.item_name}}</h3>
+        <h5>가격: {{history.item_price}} / 개수: {{history.quantity}}</h5>
+        <h4>총 구매 금액: {{history.total_amount}}</h4>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}

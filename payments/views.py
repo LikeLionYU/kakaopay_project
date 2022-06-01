@@ -70,3 +70,8 @@ def approval(request):
             'amount': amount,
         }
         return render(request, 'approval.html', context)
+
+def history(request):
+    histories = Shopping.objects.filter(is_complete=True)
+    context = {'histories':histories}
+    return render(request, 'history.html', context)
