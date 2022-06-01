@@ -1,28 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>멋사 몰</title>
-</head>
-
-<body>
-    <h1>멋사 몰</h1>
-    <h3>모든 게 다 있는 멋사몰에 오신 걸 환영합니다 😂</h3>
-    <br>
-    <h3>⬇️ 구매하실 물건과 가격을 입력하고 결제 버튼을 눌러주세요 ⬇️</h3>
-    <div class="kakaopay_payments">
-        <h1 class="kakaopay_title">KAKAO PAY</h1>
-        <form action="{% url 'home'%}" method="post" class="kakaopay_pay">
-            {% csrf_token %}
-            <table>
-                {{form.as_table}}
-            </table>
-            <input type="submit" class="kakaopay_btn" value="카카오페이로 결제하기">
-        </form>
-    </div>
-</body>
-
-</html>
+{% extends 'base.html' %}
+{% block title %}
+<title>멋사 몰</title>
+{% endblock title %}
+{% block content %}
+<h1>멋사 몰</h1>
+<h3>모든 게 다 있는 멋사몰에 오신 걸 환영합니다 😂</h3>
+<br>
+<h3>⬇️ 구매하실 물건과 가격을 입력하고 결제 버튼을 눌러주세요 ⬇️</h3>
+<div class="kakaopay_payments">
+    <h1 class="kakaopay_title">KAKAO PAY</h1>
+    <form action="{% url 'home'%}" method="post" class="kakaopay_pay">
+        {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table>
+        <input type="submit" class="kakaopay_btn" value="카카오페이로 결제하기">
+    </form>
+</div>
+{% endblock content %}
