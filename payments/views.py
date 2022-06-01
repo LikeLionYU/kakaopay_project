@@ -1,7 +1,13 @@
-from django.shortcuts import get_object_or_404, render, redirect
+import os
 import requests
+from django.shortcuts import get_object_or_404, render, redirect
+from conf.settings import secrets
 from .models import Shopping
 from .forms import ShoppingForm
+
+for secret, key in secrets.items():
+    if secret == 'DJANGO_APP_KAKAOPAY_API_ADMIN_KEY':
+        DJANGO_APP_KAKAOPAY_API_ADMIN_KEY = key
 
 def home(request):
     if request.method == 'POST':
@@ -14,7 +20,7 @@ def home(request):
 
             URL = 'https://kapi.kakao.com/v1/payment/ready'
             headers = {
-                "Authorization": "KakaoAK " + "88ca1875a9b3176b59b0098a0345ed1e",
+                "Authorization": "KakaoAK " + DJANGO_APP_KAKAOPAY_API_ADMIN_KEY,
                 "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
             }
             params = {
@@ -53,7 +59,7 @@ def approval(request):
 
         URL = 'https://kapi.kakao.com/v1/payment/approve'
         headers = {
-                "Authorization": "KakaoAK " + "88ca1875a9b3176b59b0098a0345ed1e",
+                "Authorization": "KakaoAK " + DJANGO_APP_KAKAOPAY_API_ADMIN_KEY,
                 "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
             }
         params = {
@@ -72,6 +78,6 @@ def approval(request):
         return render(request, 'approval.html', context)
 
 def history(request):
-    histories = Shopping.objects.filter(is_complete=True)
+    histories = Shopping.objects.filter(is_complete=True).order_by("-shopped_date")
     context = {'histories':histories}
     return render(request, 'history.html', context)

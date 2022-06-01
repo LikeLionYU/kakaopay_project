@@ -11,16 +11,21 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-
+import json
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ywu6-o*ddt$!gh*1#42vvn(30=t%53z$@aswm#m(_fh#1140ix'
+SECRETS_PATH = os.path.join(BASE_DIR, 'secrets.json')
+# json파일을 파이썬 객체로 변환
+secrets = json.loads(open(SECRETS_PATH).read())
+for secret, key in secrets.items():
+    if secret == 'SECRET_KEY':
+        # SECURITY WARNING: keep the secret key used in production secret!
+        SECRET_KEY = key
+
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
