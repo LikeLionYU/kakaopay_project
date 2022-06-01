@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 import requests
+from .forms import ShoppingForm
 
 def home(request):
     if request.method == 'POST':
@@ -26,8 +27,10 @@ def home(request):
         request.session['tid'] = response.json()['tid']      # 결제 승인시 사용할 tid를 세션에 저장
         next_url = response.json()['next_redirect_pc_url']   # 결제 페이지로 넘어갈 url을 저장
         return redirect(next_url)
-
-    return render(request, 'home.html')
+    if request.method == "GET":
+        form = ShoppingForm
+        context = {'form':form }
+        return render(request, 'home.html', context)
 
 def approval(request):
     URL = 'https://kapi.kakao.com/v1/payment/approve'

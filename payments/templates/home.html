@@ -13,7 +13,10 @@
         <h1 class="kakaopay_title">KAKAO PAY</h1>
         <form method="post" class="kakaopay_pay">
             {% csrf_token %}
-            <button class="kakaopay_btn">카카오페이로 결제하기</button>
+            <table>
+                {{form.as_table}}
+            </table>
+            <input type="submit" class="kakaopay_btn" value="카카오페이로 결제하기">
         </form>
     </div>
 </body>

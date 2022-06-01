@@ -15,24 +15,24 @@
             <h3 class="text-center my-5">주문자 정보</h3>
             <div>
                 <div class="my-3 row">
-                    <div class="h5 col-6">주문번호</div>
-                    <div class="h6 col-6 text-right">{{ response.partner_order_id }}</div>
+                    <h5>주문번호</h5>
+                    <div>{{ response.partner_order_id }}</div>
                 </div>
                 <div class="my-3 row">
-                    <div class="h5 col-6">상품명</div>
-                    <div class="h6 col-6 text-right">{{ response.item_name }}</div>
+                    <h5>상품명</h5>
+                    <div>{{ response.item_name }}</div>
                 </div>
                 <div class="my-3 row">
-                    <div class="h5 col-6">결제금액</div>
-                    <div class="h6 col-6 text-right">{{ amount }}원</div>
+                    <h5>결제금액</h5>
+                    <div>{{ amount }}원</div>
                 </div>
                 <div class="my-3 row">
-                    <div class="h5 col-6">결제승인시각</div>
-                    <div class="h6 col-6 text-right">{{ response.approved_at }}</div>
+                    <h5>결제승인시각</h5>
+                    <div>{{ response.approved_at }}</div>
                 </div>
             </div>
-            <div class="mt-5 pt-3 text-center">
-                <a href="{% url 'home'%}" class="btn btn-warning">메인으로 돌아가기</a>
+            <div>
+                <a href="{% url 'home'%}" class="save_btn">메인으로 돌아가기</a>
             </div>
 
         </div>
